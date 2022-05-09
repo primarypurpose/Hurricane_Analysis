@@ -84,7 +84,7 @@ def new_dictionary(name, month, year, max_wind, areas, damage, death):
     for i in range(0, len(name)):
         key = name[i]
         value = {}
-        value.update({"Names": name[i], "Months": month[i], "Years": year[i], "Max_Sustained_Winds": max_wind[i],
+        value.update({"Name": name[i], "Month": month[i], "Year": year[i], "Max_Sustained_Wind": max_wind[i],
                       "Areas_Affected": areas[i], "Damages": damage[i], "Deaths": death[i]})
         hurricane_dict.update({key: value})
     return hurricane_dict
@@ -92,11 +92,25 @@ def new_dictionary(name, month, year, max_wind, areas, damage, death):
 
 hurricanes = new_dictionary(names, months, years, max_sustained_winds,
                             areas_affected, updated_damages, deaths)
-print(hurricanes)
+#print(hurricanes)
 
 # write your construct hurricane by year dictionary function here:
 
 
+def hurricane_year(name_dict):
+    new_dict = {}
+    for name in name_dict.values():
+        current_year = name["Year"]
+        current_cane = name
+        if current_year in new_dict:
+            new_dict[current_year].append(current_cane)
+        else:
+            new_dict[current_year] = [current_cane]
+    return new_dict
+
+
+hurricanes_by_year = hurricane_year(hurricanes)
+print(hurricanes_by_year)
 # write your count affected areas function here:
 
 
